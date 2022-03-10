@@ -8,7 +8,9 @@ const getLikedPosts = () => {
 };
 
 const getReportedPosts = () => {
-    return posts.filter((post) => reportedPostsId.includes(post.id));
+    return posts.filter((post) => reportedPostsId.includes(post.id))
+    ;
+    
 };
 
 const isLiked = (id) => {
@@ -16,15 +18,19 @@ const isLiked = (id) => {
 };
 
 const addToLiked = (id) => {
-    likedPostsId.plus(id); 
+    const posts=likedPostsId.plus(id); 
     showPosts(posts);
+    
     
 };
 
 const reportPost = (id) => {
+
     reportedPostsId.push(id);
-    const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
+    const remainingPosts = posts.filter((post) => !reportedPostsId.
+    includes(post.id));
     showPosts(remainingPosts);
+
 };
 
 const displayContent = (text) => {
@@ -52,8 +58,11 @@ const switchTab = (id) => {
 };
 
 const createPost = (post) => {
+
     const userImage =post.userImage;
     const image = post.image;
+    const commentsUser=post.comments[0].user;
+    const comments=post.comments[0].text;
     const div = document.createElement( "article" );
     div.classList.add( "post" );
     div.innerHTML = `
@@ -122,9 +131,9 @@ const createPost = (post) => {
                   <div class="post__description">
                     <small>
                       <a class="post__name--underline" href="#">
-                          ${post.comments?.user}
+                          ${commentsUser}
                       </a>
-                      ${post.comments?.text}
+                      ${comments}
                     </small>
                   </div>
                   <span class="post__date-time">30 minutes ago</span>
@@ -132,7 +141,9 @@ const createPost = (post) => {
               </div>
       `;
     return div;
+    
 };
+
 
 const showPosts = (posts) => {
     const productsContainer = document.getElementById( "posts" );
@@ -157,6 +168,8 @@ const displayReportedPosts = () => {
     reportedPosts.forEach((post) => {
         const div = createPost(post);
         document.getElementById( "reported" ).appendChild(div);
+        
+
     });
 };
 
