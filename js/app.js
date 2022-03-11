@@ -17,7 +17,7 @@ const isLiked = (id) => {
     return likedPostsId?.length && !!likedPostsId.includes(id);
     
 };
-
+// fixed like bug
 const addToLiked = (id) => {
     likedPostsId.push(id); 
     showPosts(posts);
@@ -33,7 +33,7 @@ const reportPost = (id) => {
     showPosts(remainingPosts);
 
 };
-
+// fixed description bug
 const displayContent = (text) => { 
     return text.length < 30 ? (text) : text.slice(0, 30) + "<span class='fw-bold'>... read more</span>";
 };
@@ -59,7 +59,7 @@ const switchTab = (id) => {
 };
 
 const createPost = (post) => {
-
+// fixed profile picture & comments bug
     const userImage =post.userImage;
     const image = post.image;
     const commentsUser=post.comments[0].user;
@@ -156,8 +156,10 @@ const showPosts = (posts) => {
     });
 };
 
+// fixed liked posts
 const displayLikedPosts = () => {
-    const likedPosts = getLikedPosts();
+  document.getElementById( "liked" ).innerHTML='';
+      const likedPosts = getLikedPosts();
     likedPosts.forEach((post) => {
         const div = createPost(post);
         document.getElementById( "liked" ).appendChild(div);
@@ -165,7 +167,9 @@ const displayLikedPosts = () => {
     });
 };
 
+// fixed repoted posts
 const displayReportedPosts = () => {
+  document.getElementById( "reported" ).innerHTML='';
     const reportedPosts = getReportedPosts();
     reportedPosts.forEach((post) => {
         const div = createPost(post);
